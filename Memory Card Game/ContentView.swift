@@ -14,7 +14,7 @@ struct ContentView: View {
     var body: some View {
         VStack {
             HStack {
-                ForEach(emojis[0..<6], id: \.self) { emoji in CardView(content: emoji)
+                ForEach(emojis[0..<emojiCount], id: \.self) { emoji in CardView(content: emoji)
                 }
             }
             HStack {
@@ -26,38 +26,48 @@ struct ContentView: View {
                         Text("Card")
                     }
                 })
-                
+                Spacer()
+                Button(action: {
+                    emojiCount += 1
+                }, label: {
+                    VStack {
+                        Text("Add")
+                        Text("Card")
+                    }
+                })
+                .padding(.horizontal)
             }
-            
-            
-            
-            .padding(.horizontal)
-            .foregroundColor(.blue)
         }
-    }
-    
-    
-    struct CardView: View {
-        var content: String
-        @State var isFaceUp: Bool = true
         
-        var body: some View {
-            ZStack {
+        .padding(.horizontal)
+        .foregroundColor(.red)
+        
+    }
+        
+        struct CardView: View {
+            var content: String
+            @State var isFaceUp: Bool = true
+            
+            var body: some View {
                 let shape = RoundedRectangle(cornerRadius: 20)
-                if isFaceUp {
-                    
-                    shape.fill().foregroundColor(.white)
-                    shape.stroke(lineWidth: 3)
-                    Text(content).font(.largeTitle)
-                } else {
-                    shape.fill()
+                
+                ZStack {
+                    if isFaceUp {
+                        
+                        shape.fill().foregroundColor(.white)
+                        shape.stroke(lineWidth: 3)
+                        Text(content).font(.largeTitle)
+                    } else {
+                        shape.fill()
+                    }
+                }
+                .onTapGesture {
+                    isFaceUp.toggle()
                 }
             }
-            .onTapGesture {
-                isFaceUp = isFaceUp
-            }
         }
     }
+
     
     
     
@@ -71,5 +81,4 @@ struct ContentView: View {
     
     
     
-    
-}
+
