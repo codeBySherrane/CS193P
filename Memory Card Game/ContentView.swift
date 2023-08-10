@@ -66,23 +66,26 @@ struct CardView: View {
             }
         }
         .onTapGesture {
-            isFaceUp = !isFaceUp
+            withAnimation {
+                isFaceUp = !isFaceUp
+                
+            }
         }
     }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 }
-    
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-
